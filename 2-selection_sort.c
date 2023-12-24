@@ -2,8 +2,8 @@
 
 /**
  * integer_swap- This swaps two integers
- * @i: This is the first
- * @j: This is the second
+ * @a: This is the first
+ * @b: This is the second
  */
 
 void integer_swap(int *a, int *b)
@@ -18,7 +18,7 @@ void integer_swap(int *a, int *b)
 /**
  * selection_sort - This sorts an array of integers
  * @array: This is an array of integers
- * @ size: This is the size of the array
+ * @size: This is the size of the array
  */
 
 void selection_sort(int *array, size_t size)
@@ -29,7 +29,7 @@ void selection_sort(int *array, size_t size)
 	if (array == NULL || size < 2)
 		return;
 
-	for (i = 0; i < size - 1; i++ )
+	for (i = 0; i < size - 1; i++)
 	{
 		minimum = array + i;
 		for (j = i + 1; j < size; j++)
