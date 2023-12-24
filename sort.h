@@ -20,7 +20,7 @@ typedef enum bool
 } bool;
 
 /**
- * struct listint_s - Doubly linked list 
+ * struct listint_s - Doubly linked list
  *
  * @n: Int stored in node
  * @prev: Ptr to the prev element of the list
