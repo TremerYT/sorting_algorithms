@@ -34,9 +34,9 @@ void bubble_sort(int *array, size_t size)
 		bubble = true;
 		for (a = 0; a < extent - 1; a++)
 		{
-			if (array[i] > array[i + 1])
+			if (array[a] > array[a + 1])
 			{
-				integer_swap(array + a, array + i + 1);
+				integer_swap(array + a, array + a + 1);
 				print_array(array, size);
 				bubble = false;
 			}
