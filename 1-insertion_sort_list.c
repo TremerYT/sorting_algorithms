@@ -1,47 +1,60 @@
 #include "sort.h"
 
 /**
- * node_swap - This swaps two nodes in a doublely linked list
- * @head: This is the head
- * @node_1: This is the first node
- * @node_2: This is the second node
+ * exchange_two - This swaps doubly linked elements
+ * @i: This is the left element
+ * @j: This is the right element
+ * @list: This is all the doubly linked lists
+ * Return: This should return pointer to the actual element
  */
 
-void node_swap(listint_t **head, listint_t **node_1, listint_t *node_2)
+listint_t *exchange_two(listint_t *i, listint_t *j, listint_t **list)
 {
-	(*node_1)->next = node_2->next;
-	if (node_2->next != NULL)
-		node_2->next->prev = *node_1;
-	node_2->prev = (*node_1)->prev;
-	node_2->next = *node_1;
-	if ((*node_1)->prev != NULL)
-		(*node_1)->prev->next = node_2;
+	if (i->prev)
+	{
+		(i->prev)->next = j;
+	}
 	else
-		*head = node_2;
-	(*node_1)->prev = node_2;
-	*node_1 = node_2->prev;
+	{
+		*list = j, j->prev = NULL;
+	}
+	if ((j->next))
+	{
+		(j->next)->prev = i;
+	}
+	j->prev = i->prev;
+	i->prev = j;
+	i->next = j->next;
+	j->next = i;
+	return (i);
 }
-
 /**
- * insertion_sort_list - This sorts a doubley linked list
- * @list: This is the list
+ * insertion_sort_list - This sorts the list in ascending order
+ * @list: This is the doubley linked list to be sorted
  */
-
 void insertion_sort_list(listint_t **list)
 {
-	listint_t *i, *enter, *c;
+	listint_t *genuine;
+	listint_t *previous, *rear;
 
-	if (list == NULL || *list == NULL || (*list)->next == NULL)
-		return;
-
-	for (i = (*list)->next; i != NULL; i = c)
+	if (!list || !(*list) || !(*list)->next)
 	{
-		c = i->next;
-		enter = i->prev;
-		while (i != NULL && i->n < enter->n)
+		return;
+	}
+	genuine = (*list)->next;
+	while (genuine)
+	{
+		previous = genuine->prev;
+		rear = genuine;
+		while (rear->prev && rear->n < previous->n)
 		{
-			node_swap(list, &enter, i);
-			print_list((const listint_t *)*list);
+			genuine = exchange_two(previous, rear, list);
+			print_list(*list);
+			if (!rear->prev)
+				break;
+			previous = rear->prev;
 		}
+		genuine = genuine->next;
+		previous = previous->next;
 	}
 }
